@@ -25,7 +25,6 @@ def main(mtz, target, model, debug=False, dist=1.5, cells=1):
         logger.setLevel(logging.DEBUG)
 
     oshift = calculate_origin_shift(mtz, target, model)
-    logger.debug("Origin shift calculated to be: %s", oshift)
     model = move_model_to_target(target, model, oshift)
 
     ref = pdb.pdb_input(target)
