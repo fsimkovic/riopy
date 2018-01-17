@@ -54,8 +54,8 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--debug", default=False, action="store_true")
-    parser.add_argument("-c", "--cells", default=1)
-    parser.add_argument("-d", "--dist", default=1.5)
+    parser.add_argument("-c", "--cells", default=1, type=int)
+    parser.add_argument("-d", "--dist", default=1.5, type=float)
     parser.add_argument("mtz")
     parser.add_argument("target")
     parser.add_argument("model")
