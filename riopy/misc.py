@@ -14,6 +14,7 @@ def calculate_origin_shift(mtz, target, model):
         map(os.remove, ["shelxe-input.ent", "shelxe-input.hkl"])
     except:
         pass
+    logger.debug("Origin shift calculated to be: %s", mrinfo.originShift)
     return mrinfo.originShift
 
 
