@@ -39,7 +39,7 @@ def main(mtz, target, model, debug=False):
     s_ca = select(s, "name ca")
 
     r = Rio(s_ca, h_ca, sg, uc)
-    rscore = r.compute(max_dist=1.5, cells=3)
+    rscore = r.compute(max_dist=1.5, cells=1)
     logger.info("RIO score: %d", rscore)
 
     if debug:

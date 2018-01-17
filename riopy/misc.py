@@ -49,7 +49,6 @@ def count_res_in_frag(residues, min_frag_len=3):
 
     """
     if len(residues) < 1:
-        logger.debug("No residue indexes provided.")
         return 0
 
     def valid_frag_len(c):
