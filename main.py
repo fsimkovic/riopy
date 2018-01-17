@@ -19,7 +19,7 @@ def select(h, sel):
     return h.select(h.atom_selection_cache().selection(sel))
 
 
-def main(mtz, target, model, debug=False):
+def main(mtz, target, model, debug=False, dist=1.5, cells=1):
 
     if debug:
         logger.setLevel(logging.DEBUG)
@@ -39,7 +39,7 @@ def main(mtz, target, model, debug=False):
     s_ca = select(s, "name ca")
 
     r = Rio(s_ca, h_ca, sg, uc)
-    rscore = r.compute(max_dist=1.5, cells=1)
+    rscore = r.compute(max_dist=dist, cells=cells)
     logger.info("RIO score: %d", rscore)
 
     if debug:
@@ -54,6 +54,8 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--debug", default=False, action="store_true")
+    parser.add_argument("-c", "--cells", default=1)
+    parser.add_argument("-d", "--dist", default=1.5)
     parser.add_argument("mtz")
     parser.add_argument("target")
     parser.add_argument("model")
