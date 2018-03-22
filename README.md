@@ -1,4 +1,8 @@
 
+## Dependencies
+- [AMPLE](http://ample.readthedocs.io/)
+- [CCTBX](https://cctbx.github.io/)
+
 ## Examples
 
 ```bash
