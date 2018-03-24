@@ -6,7 +6,7 @@
 ## Examples
 
 ```bash
-$ ccp4-python main.py examples/1a6m.mtz examples/1a6m.pdb examples/1a6m-sm.pdb
+$ ccp4-python riopy.py examples/1a6m.mtz examples/1a6m.pdb examples/1a6m-sm.pdb
 ```
 
 ## Citation
