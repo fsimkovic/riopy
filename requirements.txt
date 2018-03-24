@@ -1,4 +1,4 @@
 ample
 cctbx
+nose
 numpy
-

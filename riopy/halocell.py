@@ -33,8 +33,6 @@ __version__ = "1.0"
 
 import itertools
 
-from scitbx.array_family import flex
-
 
 class HaloCell(object):
 
@@ -49,4 +47,4 @@ class HaloCell(object):
                     mates.add(new_mate)
         for _ in range(ndim):
             add_one_layer()
-        return [flex.double(m) for m in mates]
+        return list(mates)

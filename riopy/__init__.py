@@ -32,4 +32,3 @@ import riopy.version
 __author__ = "Felix Simkovic"
 __contributing_authors__ = ["Jens Thomas", "Adam Simpkin", "Ronan Keegan"]
 __version__ = riopy.version.__version__
-

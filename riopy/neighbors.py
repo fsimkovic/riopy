@@ -59,6 +59,6 @@ class Neighbors(object):
         """
         for symop, cellop in itertools.product(SymmetryOperator.ops(sg), HaloCell.ops(n_uc)):
             rotop = symop.r().as_double()
-            transop = tuple(flex.double(symop.t().as_double()) + cellop)
+            transop = tuple(flex.double(symop.t().as_double()) + flex.double(cellop))
             yield (rotop, transop)
 

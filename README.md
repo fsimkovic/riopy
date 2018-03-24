@@ -4,9 +4,13 @@
 - [CCTBX](https://cctbx.github.io/)
 
 ## Examples
-
 ```bash
 $ ccp4-python riopy.py examples/1a6m.mtz examples/1a6m.pdb examples/1a6m-sm.pdb
+```
+
+## Testing
+```bash
+$ ccp4-python -m nose
 ```
 
 ## Citation
