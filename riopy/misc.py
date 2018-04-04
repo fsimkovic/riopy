@@ -1,5 +1,6 @@
 import logging
 import os
+import uuid
 
 logger = logging.getLogger(__name__)
 
@@ -10,10 +11,6 @@ def calculate_origin_shift(mtz, target, model):
     logger.debug("Calculating origin shift for %s given %s and %s", model, target, mtz)
     mrinfo = MRinfo('shelxe', target, mtz)
     mrinfo.analyse(model)
-    try:
-        map(os.remove, ["shelxe-input.ent", "shelxe-input.hkl"])
-    except:
-        pass
     logger.debug("Origin shift calculated to be: %s", mrinfo.originShift)
     return mrinfo.originShift
 
@@ -22,7 +19,8 @@ def move_model_to_target(target, model, origin_shift):
     """Move a model to the target using ``csymmatch```"""
     from ample.util.csymmatch import Csymmatch
     logger.debug("Translating %s to %s with origin shift %s", target, model, origin_shift)
-    return Csymmatch().wrapModelToNative(model, target, origin=origin_shift)
+    csymmatch_pdb = model.replace(".pdb", "_csymmatch_{}.pdb".format(str(uuid.uuid1())))
+    return Csymmatch().wrapModelToNative(model, target, origin=origin_shift, csymmatchPdb=csymmatch_pdb)
 
 
 def count_res_in_frag(residues, min_frag_len=3):
