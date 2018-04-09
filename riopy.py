@@ -2,6 +2,9 @@
 
 from __future__ import print_function
 
+import logging
+logging.basicConfig(level=logging.INFO)
+
 
 def main():
 
@@ -18,7 +21,9 @@ def main():
     from riopy.rio import Rio
     r = Rio(args.mtz, args.target, args.model)
     score = r.compute(max_dist=args.dist, ncells=args.cells)
-    print(score.__dict__)
+    logging.info("Overall RIO: %.3f", score.total)
+    logging.info("RIO model normalised: %.3f", score.norm_model)
+    logging.info("RIO target normalised: %.3f", score.norm_target)
 
 
 if __name__ == "__main__":

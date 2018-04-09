@@ -45,6 +45,8 @@ def calculate_origin_shift(mtz, target, model):
     mrinfo = MRinfo('shelxe', target, mtz)
     mrinfo.analyse(model)
     logger.debug("Origin shift calculated to be: %s", mrinfo.originShift)
+    os.unlink(mrinfo.stem + ".hkl")
+    os.unlink(mrinfo.stem + ".ent")
     return mrinfo.originShift
 
 
