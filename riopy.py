@@ -4,6 +4,7 @@ from __future__ import print_function
 
 import logging
 logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def main():
@@ -18,12 +19,17 @@ def main():
     parser.add_argument("model")
     args = parser.parse_args()
 
+    purge = True
+    if args.debug:
+        logger.setLevel(logging.DEBUG)
+        purge = False 
+
     from riopy.rio import Rio
-    r = Rio(args.mtz, args.target, args.model)
+    r = Rio(args.mtz, args.target, args.model, purge=purge)
     score = r.compute(max_dist=args.dist, ncells=args.cells)
-    logging.info("Overall RIO: %.3f", score.total)
-    logging.info("RIO model normalised: %.3f", score.norm_model)
-    logging.info("RIO target normalised: %.3f", score.norm_target)
+    logger.info("Overall RIO: %.3f", score.total)
+    logger.info("RIO model normalised: %.3f", score.norm_model)
+    logger.info("RIO target normalised: %.3f", score.norm_target)
 
 
 if __name__ == "__main__":

@@ -51,7 +51,7 @@ class RioScore(object):
 class Rio(object):
     """RIO score calculator"""
 
-    def __init__(self, mtz, target, model):
+    def __init__(self, mtz, target, model, purge=False):
         self._mtz = None
         self._target = None
         self._model = None
@@ -64,6 +64,7 @@ class Rio(object):
         self.mtz = mtz
         self.target = target
         self.model = model
+        self.purge = purge
 
     def compute(self, atom="CA", max_dist=1.5, ncells=1):
         """Compute the RIO score
@@ -94,7 +95,6 @@ class Rio(object):
 
         h_mod_xyz = np.array(h_mod_atm.atoms().extract_xyz())
         for rotop, transop in Neighbors.ops(self._space_group, ncells):
-            # TODO: orthogonalize rotop and transop instead of all xyz
             rt_a = self._unit_cell.fractionalize(sites_cart=h_tar_atm.atoms().extract_xyz()) * rotop + transop
             h_tar_xyz = np.array(self._unit_cell.orthogonalize(sites_frac=rt_a))
 
@@ -106,7 +106,8 @@ class Rio(object):
 
             rio.total += count_res_in_frag(con_as_resseqs)
 
-        os.unlink(self._model)
+        if self.purge:
+            os.unlink(self._model)
         self.model = org_model
 
         rio.norm_model = round(rio.total / float(h_mod_xyz.shape[0]), 3)
